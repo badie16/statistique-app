@@ -1,0 +1,647 @@
+/* start variables */
+:root {
+  --main-color: #00aeef;
+  --main-p: #f0f2f5;
+  --font-size: 1.4rem;
+  --font-size-lg: 2rem;
+  --font-size-xl: 3rem;
+  --border-radius: 10px;
+  --nav-size: 70px;
+  --filled-color: #000;
+  --filled-bg: #fff;
+  --error: #e91e63;
+  --box-color: #ccc;
+}
+.dark {
+  --main-p: #2a2a38;
+  --filled-color: #9e9e9e;
+  --filled-bg: #000;
+  --error: #03a9f4;
+  --box-color: #1a1a2e;
+}
+/* end variables */
+/* start global rules */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Potta One", cursive, Arial, Helvetica, sans-serif;
+  background-color: var(--filled-bg);
+
+  /* background-image: url(../img/bg.png); */
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+/* end global rules */
+/* start header */
+header {
+  color: var(--main-color);
+  box-shadow: 5px 2px var(--main-p);
+  font-size: var(--font-size-lg);
+  height: var(--nav-size);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--filled-bg);
+}
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo {
+  font-size: var(--font-size-lg);
+  pointer-events: none;
+}
+header .addSerie {
+  margin-right: 10px;
+  display: none;
+}
+header .addSerie.open {
+  display: unset;
+}
+.dark-mode-toggle {
+  color: var(--main-color);
+  cursor: pointer;
+}
+.bxs-sun {
+  display: none;
+}
+.bxs-moon {
+  display: inline-block;
+}
+.dark .bxs-sun {
+  display: inline-block;
+}
+.dark .bxs-moon {
+  display: none;
+}
+/* end header */
+/* start app */
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--filled-bg);
+}
+.full {
+  display: flex !important;
+  height: calc(100vh - var(--nav-size) - 60px - 20px);
+  /* 60px of footer et 20px of margine top of footer */
+  align-items: center;
+  justify-content: center;
+}
+.notFull {
+  position: relative;
+  height: fit-content;
+  justify-content: start;
+  margin-top: 20px;
+}
+
+button.addSerie {
+  background-color: var(--main-color);
+  color: var(--main-p);
+  margin: 20px 0;
+  height: 80px;
+  width: 280px;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-lg);
+}
+.notFull button.addSerie {
+  margin: 0;
+  height: auto;
+  font-size: var(--font-size);
+  width: 180px;
+}
+.app button.addSerie:hover {
+  color: var(--main-p);
+  box-shadow: 3px 3px 10px 1px var(--box-color);
+}
+.etaps {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+.dark .etaps {
+  background: rgba(255, 255, 255, 0.1);
+}
+.etaps.open {
+  display: block;
+  z-index: 2;
+}
+.etaps .form {
+  overflow: hidden;
+  width: 520px;
+  height: 440px;
+  background-color: var(--filled-bg);
+  color: var(--filled-color);
+  /* background-image: url(../img/bg.png); */
+  position: absolute;
+  top: 50%;
+  padding: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0 0 16px rgb(0 0 0 / 12%), 0 16px 16px rgb(0 0 0 / 24%);
+}
+.etaps .etap {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  height: 86%;
+}
+.etaps .etap1 {
+  display: flex;
+}
+.etaps .etap2 {
+  flex-direction: row;
+  gap: 0;
+  overflow: auto;
+}
+.etaps .etap2 ul {
+  flex-basis: calc((100%-25%) / 2);
+  text-align: center;
+}
+.etaps .etap2 ul.tartib {
+  flex-basis: 20%;
+}
+.etaps .etap2 ul.niUL {
+  flex-basis: 30%;
+}
+.etaps .etap2 ul h5 {
+  border: 1px solid;
+  margin-bottom: 0;
+}
+.etaps .etap2 ul li {
+  border: 1px solid;
+  width: 100%;
+  padding: 2px;
+  height: 32px;
+  font-weight: bold;
+  border-top: none;
+}
+.etaps .etap2 ul li.active {
+  border: 1px solid var(--error);
+}
+.etaps .etap2 ul li input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  background: inherit;
+  color: var(--filled-color);
+}
+li.continu {
+  display: flex;
+  padding: 0 8px !important;
+  align-items: center;
+  font-size: 25px;
+}
+.etaps .etap2 ul li input.active {
+  color: #f44336;
+  text-decoration: underline;
+}
+.etaps .etap2 ul li input::placeholder {
+  color: #f44336;
+}
+select#typeOfSerie {
+  padding: 5px 10px;
+  margin: 6px;
+  outline: none;
+  border-radius: 4px;
+  width: 160px;
+  border: 1px solid #9e9e9e;
+  height: 34px;
+  background: var(--filled-bg);
+  color: var(--filled-color);
+}
+.etap1 .sp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  position: relative;
+}
+label.Nclass {
+  flex: 1;
+  position: absolute;
+  left: -200%;
+  top: 0;
+  transition: 0.5s;
+}
+label.XYcalss {
+  flex: 1;
+  position: absolute;
+  left: -200%;
+  top: 0;
+  transition: 0.5s;
+}
+label.Ntotal {
+  position: absolute;
+  left: -200%;
+  transition: 0.5s;
+  width: min-content;
+}
+label.Ntotal.open,
+label.Nclass.open,
+label.XYcalss.open {
+  left: 0;
+}
+label.Ntotal.open ~ label.Nclass.open,
+label.Ntotal.open ~ label.XYcalss.open {
+  left: 180px;
+}
+input#SizeOfSerie,
+input#Ntotal,
+input#Nclass {
+  height: 34px;
+  width: 160px;
+  padding: 4px 10px;
+  margin: 6px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid #9e9e9e;
+  position: relative;
+  z-index: 2;
+  background-color: var(--filled-bg);
+  color: var(--filled-color);
+}
+input#Nclass.stop {
+  opacity: 0.5;
+  background: #ccc;
+}
+input#SizeOfSerie.active,
+input#Ntotal.active,
+input#Nclass.active {
+  border-color: var(--error);
+}
+input#SizeOfSerie ~ span.error,
+input#Ntotal ~ span.error,
+input#Nclass ~ span.error {
+  font-size: 13px;
+  color: var(--error);
+  transition: 0.5s;
+  position: relative;
+  left: -200%;
+  z-index: 1;
+}
+input#SizeOfSerie.active ~ span.error {
+  left: 0;
+}
+input#Ntotal.active ~ span.error {
+  left: 6px;
+}
+input#Nclass.active ~ span.error {
+  left: 6px;
+}
+.etaps .set {
+  position: relative;
+  bottom: -15px;
+  float: right;
+}
+.etaps .set button {
+  padding: 8px 15px;
+  border-radius: 6px;
+  margin-left: 5px;
+  background: transparent;
+  color: var(--main-color);
+  font-size: 13px;
+  border: 1px solid #dadce0;
+  font-weight: bold;
+  transition: 0.5s;
+  width: 75px;
+}
+.etaps .set button:hover {
+  background-color: #4285f40a;
+}
+.etaps .set button[type="submit"] {
+  background: var(--main-color);
+  color: #fff;
+  position: relative;
+}
+.etaps .set button[type="submit"].active {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.etaps .set button[type="submit"]:hover {
+  box-shadow: 0 1px 2px 0 rgba(66, 133, 244, 0.3),
+    0 1px 3px 1px rgba(66, 133, 244, 0.15);
+}
+.etap3 {
+  display: none;
+  background-color: var(--filled-bg);
+  margin: 20px 0;
+}
+.etap3 .info {
+  color: var(--filled-color);
+}
+.tabl {
+  display: flex;
+}
+.tabl ul.td {
+  display: flex;
+  border: 0.5px solid;
+  overflow-x: auto;
+  background: var(--filled-bg);
+  color: var(--filled-color);
+}
+.tabl ul.td ul li {
+  border: 0.5px solid;
+  padding: 8px 16px;
+  text-align: center;
+}
+.tabl ul.head {
+  border: 0.5px solid;
+  border-right: none;
+  border-color: var(--filled-color);
+}
+.tabl ul.head li {
+  border: 0.5px solid #000;
+  border-right: none;
+  border-color: var(--filled-color);
+  padding: 8px 16px;
+  background: var(--main-color);
+  color: var(--main-p);
+}
+.para {
+  display: none;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
+}
+.para.open {
+  display: flex;
+}
+.btn1 {
+  background-color: var(--main-color);
+  color: var(--main-p);
+  padding: 15px;
+  position: relative;
+  text-align: right;
+  border-radius: initial;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  font-size: 18px;
+}
+.para > div {
+  background: #fff;
+  counter-increment: services;
+  transition: var(--main-transition);
+  position: relative;
+  border: 1px solid #ccc;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  background: var(--filled-bg);
+  color: var(--filled-color);
+}
+.para > div .content {
+  transition: 0.5s;
+  margin: 0 !important;
+  overflow: hidden;
+  padding: 12px 6px;
+}
+.anime.active {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: url(../img/loading.gif);
+  background-size: 200px;
+  background-position: center;
+  background-color: #fcfefc;
+  background-repeat: no-repeat;
+}
+.graphe .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.graphe .container > div {
+  display: none;
+  border: 1px solid;
+  padding: 10px;
+  max-width: 100%;
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.graphe .container > div.open {
+  display: initial;
+}
+.dark .graphe .container > div.open {
+  filter: invert(1);
+}
+.line {
+  flex: 1;
+}
+.line.open ~ .bar {
+  flex: 1;
+}
+.mostache.open {
+  display: block;
+}
+.up {
+  border-radius: 50%;
+  position: absolute;
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  right: 1%;
+  transition: 0.5s;
+  top: 2%;
+  cursor: pointer;
+}
+.daw {
+  border-radius: 50%;
+  position: absolute;
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  left: 1%;
+  transition: 0.5s;
+  top: 2%;
+  cursor: pointer;
+}
+.casNon {
+  color: var(--error);
+  transition: 0.4s;
+  position: absolute;
+  left: -200%;
+  bottom: 20px;
+  font-size: 13px;
+}
+.casNon.open {
+  left: 20px;
+}
+.copy {
+  width: 20px;
+  position: absolute;
+  bottom: 4%;
+  right: 1%;
+  cursor: pointer;
+}
+.mostache {
+  height: 300px;
+}
+.right {
+  display: flex;
+  gap: 10px;
+}
+.dark .anime.active {
+  filter: invert(1);
+}
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 20px;
+}
+footer .info {
+  display: flex;
+  gap: 20px;
+  padding: 14px 20px;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--main-color);
+  font-size: 20px;
+}
+footer .info a {
+  color: var(--main-color);
+    text-decoration: none;
+}
+/* end app */
+@media (max-width: 767px) {
+  :root {
+    --border-radius: 5px;
+    --font-size: 1rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --nav-size: 60px;
+  }
+  header {
+    z-index: 3;
+  }
+  .etaps .form {
+    width: 100vw;
+    height: calc(100vh - var(--nav-size));
+    border-radius: 0;
+    position: relative;
+    transform: none;
+    left: 0;
+    top: var(--nav-size);
+  }
+  button.addSerie {
+    height: 50px;
+  }
+  .bar.open,
+  .line.open,
+  .mostache.open {
+    min-width: 100%;
+  }
+  .para > div {
+    flex: 100%;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 13%);
+  }
+  .bar {
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 13%);
+  }
+  .etap1 .sp {
+    flex-direction: column;
+  }
+  label.Ntotal {
+    width: unset;
+  }
+  input#Ntotal.active ~ span.error {
+    left: 0px;
+  }
+  label.Ntotal.open ~ label.Nclass.open,
+  label.Ntotal.open ~ label.XYcalss.open {
+    left: 0;
+    top: 110px;
+  }
+}
+@media (max-width: 650px) {
+  .graphe .container > div.open.rotate90 {
+    position: fixed;
+    width: 100vh;
+    display: flex;
+    height: 100vw !important;
+    top: calc(100vh / 2 - 100vw / 2);
+    z-index: 2;
+    left: calc(-100vh / 2 + 100vw / 2);
+    background: white;
+    margin: 0;
+    transform: rotate(90deg);
+    max-width: initial;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  .graphe .container > div.mostache.rotate90 {
+    transform: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh !important;
+  }
+}
+
+@media (min-width: 650px) {
+  .graphe .container > div.open.rotate90,
+  .mostache.open.rotate90 {
+    position: fixed;
+    width: 100vw;
+    height: 100vh !important;
+    top: 0;
+    z-index: 2;
+    left: 0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  /* .mostache.open.rotate90 {
+    position: fixed;
+    width: 100vh;
+    display: flex;
+    height: 100vw !important;
+    top: calc(100vh / 2 - 100vw / 2);
+    z-index: 2;
+    left: calc(-100vh / 2 + 100vw / 2);
+    background: white;
+    margin: 0;
+    transform: rotate(90deg);
+    max-width: initial;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: center;
+  } */
+}
+/*
+--------------the end -------------------
+--------------by badie bahida------------
+--------------2023-----------------------
+*/

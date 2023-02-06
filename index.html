@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#2196f3" />
+    <link rel="shortcut icon" href="./img/icon.webp" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistique</title>
+    <link rel="stylesheet" href="css/normalise.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="container">
+          <div class="logo mg-2 h5">statistique</div>
+          <div class="right">
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+              <!-- <i class="addSerie fa fa-plus"></i> -->
+              <i class="bxs-sun fa fa-sun" title="light-mode" ></i>
+              <i class="bxs-moon fa fa-moon" title="dark-mode" ></i>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container full d-none">
+        <button class="addSerie btn">New serie</button>
+      </div>
+      <div class="etaps">
+        <div class="form">
+          <div class="etap1 etap">
+            <label for="typeOfSerie">
+              <h5>Type Of Serie Statistique :</h5>
+              <select name="typeOfSerie" id="typeOfSerie">
+                <option value="D">Discrète</option>
+                <option value="C">Continue</option>
+                <option value="DToC">Discrète to Continue</option>
+                <!-- <option value="2V">Deux Variable</option> -->
+                <!-- <option value="2D">Deux Dimension</option> -->
+              </select>
+            </label>
+            <label for="SizeOfSerie">
+              <h5 class="textChange1">Size Of Serie Statistique :</h5>
+              <input type="number" placeholder="0" min="0" id="SizeOfSerie" />
+              <span class="error">Size Of Serie Is Null</span>
+            </label>
+            <div class="elmenetOfSerie">
+              <h5>Elemnets Of Serie Statistique :</h5>
+
+              <label for="n" class="ms-2">
+                <input type="radio" name="ele" value="n" id="n" checked="" />
+                Effectif
+              </label>
+              <label for="f">
+                <input type="radio" name="ele" value="f" id="f" />
+                Fréquence
+              </label>
+              <label for="Non">
+                <input type="radio" name="ele" value="Non" id="Non" />
+                Non
+              </label>
+            </div>
+            <div class="sp">
+              <label for="Ntotal" class="Ntotal">
+                <h5 class="mt-2">Nomber Total :</h5>
+                <input
+                  type="number"
+                  name="Ntotal"
+                  id="Ntotal"
+                  min="0"
+                  placeholder="0"
+                />
+                <span class="error">Nomber Is Null</span>
+              </label>
+              <label for="Nclass" class="Nclass">
+                <h5 class="mt-2">Nomber Of class:</h5>
+                <div>
+                  <label for="D" class="ms-2">
+                    <input
+                      type="radio"
+                      name="class"
+                      value="D"
+                      id="D"
+                      checked=""
+                    />
+                    Auto
+                  </label>
+                  <label for="S">
+                    <input type="radio" name="class" value="S" id="S" />
+                    Static
+                  </label>
+                  <input
+                    type="number"
+                    name="Nclass"
+                    id="Nclass"
+                    min="0"
+                    class="stop"
+                    placeholder="0"
+                    readonly
+                  /><span class="error">Nomber Of class: Is Null</span>
+                </div>
+              </label>
+              <label for="X-And-Y_class" class="XYcalss">
+                <h5 class="mt-2">Type Of Variable</h5>
+                X :
+                <label for="XD" class="ms-2">
+                  <input
+                    type="radio"
+                    name="Xcalss"
+                    value="D"
+                    id="XD"
+                    checked=""
+                  />
+                  Discrète
+                </label>
+                <label for="XC">
+                  <input type="radio" name="Xcalss" value="C" id="XC" />
+                  Continue
+                </label>
+                <br />
+                Y:
+                <label for="YD" class="ms-2">
+                  <input
+                    type="radio"
+                    name="Ycalss"
+                    value="D"
+                    id="YD"
+                    checked=""
+                  />
+                  Discrète
+                </label>
+                <label for="YC">
+                  <input type="radio" name="Ycalss" value="C" id="YC" />
+                  Continue
+                </label>
+              </label>
+            </div>
+            <div class="casNon">dans ce cas tout les Effectif ni = 1</div>
+          </div>
+          <div class="etap etap2">
+            <ul class="tartib">
+              <h5>n</h5>
+            </ul>
+            <ul class="xiUL ulEnter">
+              <h5>xi</h5>
+            </ul>
+            <ul class="niUL ulEnter">
+              <h5 class="ele">ni</h5>
+            </ul>
+            <ul class="yiUL ulEnter">
+              <h5>yi</h5>
+            </ul>
+          </div>
+          <div class="set">
+            <button type="reset" class="closEtap">Cancel</button>
+            <button type="submit" class="btnNextEtap">Next</button>
+          </div>
+        </div>
+      </div>
+      <div class="etap3">
+        <div class="container">
+          <div class="info mb-3">
+            <!-- <h6>Type Of Serie Statistique : <span class="type">Discrète</span></h6>
+            <h6>Size Of Serie Statistique : <span class="size">20</span></h6> -->
+          </div>
+          <div class="tabl">
+            <ul class="head"></ul>
+            <ul class="td"></ul>
+          </div>
+          <div class="para">
+            <div class="paraPosition">
+              <div class="btn1 aff-Posi" data-aff="0">
+                les Parameters de position :
+              </div>
+              <div class="content">
+                Mode md = 1 et 3<br />
+                Moyenne Arithmetique X = 2.52 <br />
+                Moyenne Quadratique Xq = 8.14 <br />
+                Mediane Me = 3.00<br />
+                Min(xi) = 1 , Max(xi) = 5<br />
+                Min(ni) = 23 , Max(ni) = 112
+              </div>
+              <!-- <div class="copy"><img src="./img/copy.svg" alt="" /></div> -->
+            </div>
+            <div class="paradispersion">
+              <div class="btn1 aff-dis" data-aff="1">
+                les Parameters de dispersion :
+              </div>
+              <div class="content">
+                l'edendu e = 4.00 <br />
+                Q1 = 1.00 <br />
+                Q2 = 3.00<br />
+                Q3 = 3.00<br />
+                R(Q) = 2.00 <br />
+                var(X) = 1.79 <br />
+                ecart-type a = 1.34
+              </div>
+              <!-- <div class="copy"><img src="./img/copy.svg" alt="" /></div> -->
+            </div>
+            <div class="paraforme">
+              <div class="btn1 aff-for" data-aff="2">
+                les Parameters de forme :
+              </div>
+              <div class="content">
+                Mode md = 1 et 3<br />
+                Moyenne Arithmetique X = 2.52 <br />
+                Moyenne Quadratique Xq = 8.14 <br />
+              </div>
+              <!-- <div class="copy"><img src="./img/copy.svg" alt="" /></div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="graphe">
+        <div class="container">
+          <div class="bar">
+            <div class="up" data-up=".bar"><img src="img/R.svg" alt="" /></div>
+            <!-- <div class="daw" data-up=".line">
+              <img src="img/daw.svg" alt="" />
+            </div> -->
+            <canvas id="bar" aria-label="chart" role="img" download></canvas>
+          </div>
+          <div class="line">
+            <div class="up" data-up=".line"><img src="img/R.svg" alt="" /></div>
+            <!-- <div class="daw" data-up=".line">
+              <img src="img/daw.svg" alt="" />
+            </div> -->
+            <canvas id="line" aria-label="chart" role="img"></canvas>
+          </div>
+          <div class="mostache">
+            <!-- <div class="daw" data-up=".mostache">
+              <img src="img/daw.svg" alt="" />
+            </div> -->
+            <div class="up" data-up=".mostache">
+              <img src="img/R.svg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <canvas width="300"id="ctx" aria-label="chart"  role="img"></canvas> -->
+    <div class="anime active"></div>
+    <div class="Fullscreen" onclick="Fullscreen()"></div>
+    <footer>
+      <div class="info container" >
+        <a class="autor" href="#">by Badi3</a>
+        <a href="http://wwww.facebook.com/badie.bahida.3"
+          ><i class="fab fa-facebook"></i
+        ></a>
+      </div>
+    </footer>
+    <!-- <script src="./js/chart.min.js" import="module"></script> -->
+    <script src="./js/graph.js"></script>
+    <script src="./js/chart.umd.min.js"></script>
+    <script src="js/main.js" module></script>
+  </body>
+</html>
+
+<!--
+--------------the end -------------------
+--------------by badie bahida------------
+--------------2023-----------------------
+!-->
