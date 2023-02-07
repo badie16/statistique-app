@@ -538,9 +538,6 @@ footer .info a {
     --font-size-xl: 2rem;
     --nav-size: 60px;
   }
-  header {
-    z-index: ;
-  }
   .etaps .form {
     width: 100vw;
     height: 100vh;
@@ -548,7 +545,7 @@ footer .info a {
     position: relative;
     transform: none;
     left: 0;
-    top: var(--nav-size);
+    top: 0;
   }
   button.addSerie {
     height: 50px;
@@ -587,7 +584,7 @@ footer .info a {
     display: flex;
     height: 100vw !important;
     top: calc(100vh / 2 - 100vw / 2);
-    z-index: 12;
+    z-index: 2;
     left: calc(-100vh / 2 + 100vw / 2);
     background: white;
     margin: 0;
@@ -614,7 +611,7 @@ footer .info a {
     width: 100vw;
     height: 100vh !important;
     top: 0;
-    z-index: 12;
+    z-index: 2;
     left: 0;
     background: white;
     display: flex;
@@ -628,7 +625,7 @@ footer .info a {
     display: flex;
     height: 100vw !important;
     top: calc(100vh / 2 - 100vw / 2);
-    z-index: 12;
+    z-index: 2;
     left: calc(-100vh / 2 + 100vw / 2);
     background: white;
     margin: 0;
