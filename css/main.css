@@ -539,11 +539,11 @@ footer .info a {
     --nav-size: 60px;
   }
   header {
-    z-index: 3;
+    z-index: ;
   }
   .etaps .form {
     width: 100vw;
-    height: calc(100vh - var(--nav-size));
+    height: 100vh;
     border-radius: 0;
     position: relative;
     transform: none;
